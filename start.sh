@@ -1,13 +1,19 @@
 #!/bin/bash
 
-# Download Paper jar if it's not already present
-if [ ! -f paper.jar ]; then
-  curl -o paper.jar https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/401/downloads/paper-1.21.4-401.jar
-fi
+echo "Starting Minecraft server..."
 
-# Agree to EULA
+# Accept the EULA
 echo "eula=true" > eula.txt
 
-# Start server
-java -Xms1G -Xmx1G -jar paper.jar nogui
+# Download Paper if it's not already downloaded
+if [ ! -f paper-1.21.4.jar ]; then
+  echo "Downloading Paper 1.21.4 build 429..."
+  curl -o paper-1.21.4.jar https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/429/downloads/paper-1.21.4-429.jar
+fi
+
+# Start the server
+java -Xms1G -Xmx2G -jar paper-1.21.4.jar nogui
+
+
+
 
